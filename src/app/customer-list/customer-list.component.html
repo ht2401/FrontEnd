@@ -1,0 +1,33 @@
+<h2>Danh sách khách hàng</h2>
+
+<div *ngIf="customers && customers.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.customerId }}</td>
+        <td>{{ customer.customerName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>{{ customer.address }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editCustomer(customer)">Sửa</button>
+          <button class="btn btn-danger" (click)="deleteCustomer(customer.customerId)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!customers || customers.length === 0">
+  <p>Không có khách hàng nào.</p>
+</div>

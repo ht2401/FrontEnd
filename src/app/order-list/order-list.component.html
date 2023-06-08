@@ -1,0 +1,29 @@
+<h2>Danh sách đơn hàng</h2>
+
+<div *ngIf="orders && orders.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Tên Khách hàng</th>
+        <th>Ngày đặt</th>
+        <th>Hóa đơn</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.customer.customerName }}</td>
+        <td>{{ order.orderDate }}</td>
+        <td>{{ order.product.price * order.quantity }}</td>
+        <td><button class="btn btn-primary" >Sửa</button>
+          <button class="btn btn-danger" >Xóa</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!orders || orders.length === 0">
+  <p>Không có đơn hàng nào.</p>
+</div>

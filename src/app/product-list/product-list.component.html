@@ -1,0 +1,59 @@
+<h2>Danh sách sản phẩm</h2>
+
+<div *ngIf="products && products.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Mô tả</th>
+        <th>Ảnh</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productId }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <img [src]="product.image" alt="Product Image" width="50" height="50">
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="editProduct(product)">Sửa</button>
+          <button class="btn btn-danger" (click)="deleteProduct(product)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!products || products.length === 0">
+  <p>Không có sản phẩm nào.</p>
+</div>
+
+<hr>
+
+<h2>Thêm sản phẩm mới</h2>
+
+<form class="needs-validation" (ngSubmit)="createProduct(productForm)">
+  <div class="mb-3">
+    <label for="name" class="form-label">Tên sản phẩm:</label>
+    <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="productForm.productName">  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Giá:</label>
+    <input type="number" class="form-control" id="price" name="price" required [(ngModel)]="productForm.price">  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Mô tả:</label>
+    <textarea class="form-control" id="description" name="description" [(ngModel)]="productForm.description"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Ảnh:</label>
+    <input type="text" class="form-control" id="image" name="image" [(ngModel)]="productForm.image">
+  </div>
+  <button type="submit" class="btn btn-primary">Thêm</button>
+</form>
+
+
